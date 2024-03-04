@@ -1,0 +1,38 @@
+---
+
+---
+<article
+      class="relative flex flex-col justify-end overflow-hidden rounded-xl px-28 pb-[8rem] pt-[4rem] max-w-48 mx-auto mt-12 tarjeta"
+    >
+    <div class="z-10 " >
+      <h3 class=" text-3xl font-bold text-black">Goku</h3>
+      <span class="text-black">Saiyan</span>
+    </div>
+    <a href="https://www.geeksforgeeks.org/how-to-add-scale-animation-on-hover-using-tailwind-css-in-react/s">
+      <img
+        src="https://i.pinimg.com/736x/75/0f/2f/750f2f1c13ddc69437ec1a4c78beacf9.jpg"
+        alt="University of Southern California"
+        class="absolute inset-0 h-full w-full object-cover "
+      />
+    </a>
+    
+
+    </article>
+
+    <style>
+      .tarjeta{
+        opacity: 1;
+        transition: opacity 0.5s ease 0s;
+        cursor: pointer;
+      }
+
+      .tarjeta:hover{
+        opacity: 0.6;
+        transform: scale(1.04);
+        transition: transform 0.5s ease-in-out; 
+      }
+    
+
+    
+
+    </style>
