@@ -1,0 +1,68 @@
+---
+// Logica para obtener 1 ID de la carta seleccionada mediante parametros
+import Layout from "../../layouts/Layout.astro";
+
+// llamo a Astro.params para manejar parametros a definidos
+const { ID } = Astro.params;
+
+import { getPersonajesByID, getPersonajes } from "../../lib/personajes";
+
+
+let personaje;
+if (ID) {
+  personaje = await getPersonajesByID({ ID });
+}
+// gerStaticPaths ya que no es SSR sino estatica 
+export async function getStaticPaths() {
+  const personajes = await getPersonajes();
+
+  return personajes.map((personaje) => ({
+    params: { ID: personaje.ID },
+  }));
+}
+---
+
+<Layout title={personaje.NOMBRE}>
+
+  <a href="/" class="flex justify-start max-w-[3.5rem]">
+    <svg
+      class="w-[4rem] h-[4rem] text-gray-800 dark:text-white hover:scale-125"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 12h14M5 12l4-4m-4 4 4 4"></path>
+    
+    </svg></a>
+<!-- Estructura para el contenido -->
+  <section class="flex flex-col gap-6 mx-4 my-4 items-center justify-center">
+    <h2 class="text-4xl font-semibold">{personaje.NOMBRE}</h2>
+    <img
+      src={personaje.IMAGEN}
+      alt={personaje.NOMBRE}
+      class="max-w-[22rem] max-h-[22rem]"
+    />
+    <div class="flex flex-col gap-3">
+      <p class="text-lg">
+        <span class="font-semibold text-xl">Raza: </span>
+        {personaje.RAZA}
+      </p>
+      <h4 class="text-xl font-semibold">Biografia</h4>
+      <p class="text-pretty text-lg">{personaje.BIOGRAFIA}</p>
+      <p class="text-lg">
+        <span class="font-semibold text-xl">Procedencia: </span>{
+          personaje.UNIVERSO
+        }
+      </p>
+      <p class="text-lg">
+        <span class="font-semibold text-xl">Poderes: </span>{personaje.PODERES}
+      </p>
+    </div>
+  </section>
+</Layout>
