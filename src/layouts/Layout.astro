@@ -1,51 +1,92 @@
 ---
+import Header from '../components/Header.astro';
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class=" min-h-screen pb-32">
+    <main class=" max-w-6xl px-4 m-auto">
+
+      <Header />
+      <slot />
+        
+      <button id="scrollButton" class="fixed bottom-4 right-4 bg-gray-200 text-white px-4 py-3 rounded-full opacity-0 transition-opacity duration-300">
+        <svg class="w-8 h-8 text-black " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13 4 4m-4-4-4 4"/>
+        </svg>
+      </button>
+
+    </main>
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(0deg, #797777 8%, #535050 46%, #3e3c3c 85%);
+    color-scheme: dark ligth;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollButton = document.getElementById('scrollButton');
+
+  // Mostrar el botón cuando se hace scroll hacia abajo
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      scrollButton?.classList.add('opacity-100');
+    } else {
+      scrollButton?.classList.remove('opacity-100');
+    }
+  });
+
+  // Volver al inicio de la página con animación
+  scrollButton?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+
+
+</script>

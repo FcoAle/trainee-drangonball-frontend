@@ -1,0 +1,15 @@
+.tarjeta {
+    
+  cursor: pointer;
+}
+
+.imagen:hover {
+  opacity: 0.2;
+  transform: scale(1.04);
+  transition: transform 0.5s ease-in-out;
+}
+.tarjeta:hover {
+  border: 1px solid rgba(255, 255, 255, 0.438) ;
+  transform: scale(1.02);
+  transition: transform 0.5s ease-in-out;
+}
