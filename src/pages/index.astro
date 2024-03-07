@@ -1,12 +1,19 @@
 ---
+import react from 'react'
+import type { loadApp } from "astro/app/node"
 import Layout from "../layouts/Layout.astro";
+import { getPersonajes,getUniversos } from "../lib/personajes";
+import SearchInput from "../components/Search"
+import FilterComponent from '../components/FiltroComponent'
 
-import Personajes from "../components/Personajes.astro";
+const data = await getPersonajes();
+const dataUni = await getUniversos();
+
+
+
 ---
-
 <Layout title="Dragon Ball Data">
-
-    <Personajes/>
-
-
+    <FilterComponent client:load data={data} dataUni={dataUni} />
 </Layout>
+
+

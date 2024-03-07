@@ -26,6 +26,11 @@ import { ViewTransitions } from 'astro:transitions';
       <Header />
       <slot />
         
+      <button id="scrollButton" class="fixed bottom-4 right-4 bg-gray-200 text-white px-4 py-3 rounded-full opacity-0 transition-opacity duration-300">
+        <svg class="w-8 h-8 text-black " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v13m0-13 4 4m-4-4-4 4"/>
+        </svg>
+      </button>
 
     </main>
   </body>
@@ -60,3 +65,28 @@ import { ViewTransitions } from 'astro:transitions';
       monospace;
   }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollButton = document.getElementById('scrollButton');
+
+  // Mostrar el botón cuando se hace scroll hacia abajo
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      scrollButton?.classList.add('opacity-100');
+    } else {
+      scrollButton?.classList.remove('opacity-100');
+    }
+  });
+
+  // Volver al inicio de la página con animación
+  scrollButton?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+});
+
+
+</script>

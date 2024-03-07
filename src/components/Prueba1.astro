@@ -1,0 +1,9 @@
+---
+const {data} = Astro.props
+
+console.log(data)
+---
+
+<div>
+  {data.map(personaje => personaje.NOMBRE)}
+</div>
