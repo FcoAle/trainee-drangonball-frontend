@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+
 import Carta from "./Carta";
 
 const Personajes = ({ data, seleccionarUniverso, buscarPalabras }) => {
