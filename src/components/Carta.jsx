@@ -1,5 +1,5 @@
 import "../css/targetas.css"
-import React from 'react';
+
 
 
 const AstroCard = ({ ID, NOMBRE, IMAGEN, DESCRIPCION, RAZA}) => {

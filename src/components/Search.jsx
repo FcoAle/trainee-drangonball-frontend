@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Search = ({ onChange }) => {
   return (
     <div class="max-w-sm mx-auto">

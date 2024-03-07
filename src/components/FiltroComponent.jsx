@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import Per from "./Per"
 import SelectInput from "./SelectInput"
 import SearchInput from "./Search"
