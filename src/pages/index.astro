@@ -1,9 +1,6 @@
 ---
-import react from 'react'
-import type { loadApp } from "astro/app/node"
 import Layout from "../layouts/Layout.astro";
 import { getPersonajes,getUniversos } from "../lib/personajes";
-import SearchInput from "../components/Search"
 import FilterComponent from '../components/FiltroComponent'
 
 const data = await getPersonajes();
